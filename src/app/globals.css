@@ -1,26 +1,96 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* 1. Define Custom Variants */
+@custom-variant dark (&:is(.dark *));
 
+/* 2. Configure the Theme Variables */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  
+  /* Radii for that premium rounded look */
+  --radius-xl: var(--radius);
+  --radius-2xl: calc(var(--radius) + 4px);
+  --radius-3xl: calc(var(--radius) + 12px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 3. LIGHT MODE (Default) */
+:root {
+  --radius: 1.5rem;
+  
+  /* Soft Light Background */
+  --background: oklch(0.98 0 0); 
+  --foreground: oklch(0.145 0 0);
+  
+  /* Pure White Card */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  
+  /* Soft Grays */
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.55 0 0);
+  --border: oklch(0.92 0 0);
+  
+  /* Professional Roofing Red */
+  --brand: oklch(0.577 0.245 27.325);
+  --brand-foreground: oklch(1 0 0);
+}
+
+/* 4. SOFT DARK MODE (The "Pro" Look) */
+.dark {
+  /* Deep Midnight Blue/Slate */
+  --background: oklch(0.12 0.02 250); 
+  --foreground: oklch(0.985 0 0);
+  
+  /* Glassmorphism Effect Card */
+  --card: oklch(0.18 0.02 250 / 0.85);
+  --card-foreground: oklch(0.985 0 0);
+  
+  /* Darker Accents */
+  --muted: oklch(0.25 0.02 250);
+  --muted-foreground: oklch(0.7 0 0);
+  --border: oklch(1 0 0 / 12%);
+  
+  /* Vibrant Dark Red */
+  --brand: oklch(0.62 0.22 28);
+}
+
+/* 5. Global Base Styles */
+@layer base {
+  * {
+    @apply border-border outline-none transition-colors duration-300;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-brand selection:text-white;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+
+  /* Custom styling for inputs to make them feel more premium */
+  input::placeholder {
+    @apply text-muted-foreground/40 font-medium;
+  }
+
+  /* Smooth scroll for the whole page */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 6. Custom Animations for the Form */
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-brand-pulse {
+  animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
