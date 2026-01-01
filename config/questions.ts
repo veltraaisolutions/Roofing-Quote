@@ -36,7 +36,7 @@ export interface FormConfig {
 }
 
 export const FORM_CONFIG: FormConfig = {
-  webhookUrl: "https://veltraai.app.n8n.cloud/webhook/veltra-website-template",
+  webhookUrl: process.env.NEXT_PUBLIC_N8N_WEBHOOK || "",
   steps: [
     {
       id: "workType",
