@@ -179,7 +179,7 @@ export default function RoofingForm() {
         </p>
         <button
           onClick={() => window.location.reload()}
-          className="w-full py-4 bg-brand text-white rounded-xl font-black text-lg hover:brightness-110 shadow-lg shadow-brand/20"
+          className="w-full py-4 bg-brand text-white rounded-xl font-black text-lg hover:brightness-110 shadow-lg shadow-brand/20 cursor-pointer"
         >
           RETURN
         </button>
