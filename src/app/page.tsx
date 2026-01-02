@@ -1,13 +1,16 @@
+"use client";
 import AboutSection from "@/components/AboutSection";
 import ProcessSection from "@/components/ProcessSection";
 import ProjectGallery from "@/components/ProjectGallery";
 import Reviews from "@/components/Reviews";
 import RoofingForm from "@/components/RoofingForm";
+import TrustBadges from "@/components/TrustBadges";
 
 export default function Home() {
   return (
     <main className="dark min-h-screen bg-background text-foreground flex flex-col items-center justify-center py-10 px-4 selection:bg-brand selection:text-white">
       {/* Decorative Background Elements */}
+      <TrustBadges />
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-brand/5 blur-[120px] rounded-full" />
         <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-brand/5 blur-[120px] rounded-full" />
